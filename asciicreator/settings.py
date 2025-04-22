@@ -52,7 +52,10 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
-CSRF_TRUSTED_ORIGINS = ['https://ascii-creator.onrender.com']
+CSRF_TRUSTED_ORIGINS = [
+        'https://ascii-creator.onrender.com',
+        'http://ec2-3-15-151-234.us-east-2.compute.amazonaws.com',
+        ]
 
 ROOT_URLCONF = 'asciicreator.urls'
 
