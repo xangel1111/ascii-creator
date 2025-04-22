@@ -52,6 +52,7 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
+CSRF_TRUSTED_ORIGINS = ['*']
 
 ROOT_URLCONF = 'asciicreator.urls'
 
