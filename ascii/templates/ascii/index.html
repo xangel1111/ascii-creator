@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="body">
+  <div class="title">
+    <h1>ASCII GENERATOR</h1>
+  </div>
+  <div class="form-box">
+
+    <form action="{% url 'ascii_show' %}" method="post" class="url-form" enctype="multipart/form-data">
+      {% csrf_token %}
+      <label for="image-url">URL: </label>
+      <input type="text" name="image-url" placeholder="url" id="image-url">
+      <input type="file" name="image" id="image">
+      <button type="submit" id="btn-build">BUILD</button>
+    </form>
+
+  </div>
+
+  {% if ascii %}
+  <div class="ascii">
+    <pre>
+      {{ascii}}
+    </pre>
+  </div>
+  {% endif %}
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.querySelector('.url-form');
+      const urlInput = document.getElementById('image-url');
+      const fileInput = document.getElementById('image');
+
+      form.addEventListener('submit', function (event) {
+        const urlValue = urlInput.value.trim();
+        const fileValue = fileInput.files.length > 0;
+
+        if ((urlValue && fileValue) || (!urlValue && !fileValue)) {
+          event.preventDefault();
+          alert('Por favor, subí una imagen O ingresá una URL. Solo una opción debe estar completada.');
+          urlInput.value = null;
+          urlInput.value = null;
+        }
+      });
+    });
+  </script>
+</body>
+</html>
